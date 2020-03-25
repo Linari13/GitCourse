@@ -81,6 +81,10 @@ to commit the file with message use:
 	git commit -m "your message"		=> commits the file with specified message atttached
 
 
-IV Repository and git folder
------------------------------
- 
+IV Commit detail with log and show
+-----------------------------------
+To see what the history of what has been done we can use these two commands:
+	Git log			=> will show us the lasts commits
+
+	Git show 		=> will show us the lasts commit and what changed.
+
