@@ -1,0 +1,86 @@
+*********************
+*** GitHub Course ***
+*********************
+
+I. Setup
+---------
+
+git config --global user.name "your name" 			=> Set user's name for git
+git config --global user.email "your@email.com"		=> Set user's mail for git
+
+   º To set notepad as the default text editor:
+   --------------------------------------------
+    notepad++ ~/.bash_profile
+    alias npp='notepad++ -multiInst -nosession'
+
+    git config --global core.editor "notepad++ -multiInst -nosession"
+    git config --global -e
+
+
+   º To set sublime as the default text editor:
+   --------------------------------------------
+   git config --global core.editor "'C:/Program Files/sublime text 3/subl.exe' -w"
+
+   Then enter:
+   	alias subl="/c/Program\ Files/Sublime\ Text\ 3/sublime_text.exe"
+   	subl.
+
+
+   º To set P4merge as default comparison and merge tool:
+   --------------------------------------------
+   git config --global diff.tool p4merge
+   git config --global difftool.p4merge.path "C:/Program Files/Perforce/p4merge.exe"
+   git config --global difftool.prompt false
+
+   git config --global merge.tool p4merge
+   git config --global mergetool.p4merge.path "C:/Program Files/Perforce/p4merge.exe"
+   git config --global mergetool.prompt false
+
+
+II. Initialization
+-------------------
+
+º Under Gitbash move to the folder with the command
+	cd <folder path>
+
+º Then enter the following command:
+	git Init <name of project folder>
+
+º If you want to delete the git repository enter:
+			   ------
+	rm -rf .git 		=> this will unset the master status of the folder
+
+º to display the files and folder contained in the actual folder use:
+	ls
+
+º to display ALL the files including hidden ones use:
+	ls -al
+
+º to display the path we're at use
+	pwd
+
+III. Commiting
+---------------
+to know what is the status of the current folder use the commad:
+	git status
+
+to create a new file in the current folder use command:
+	mate <filename.ext>		=> should open the default text editor (¡¡¡ only with TextMate !!!)
+																	--------------------------
+																	
+	**** As we use Sublime Text the command will be: ****
+	subl <filename.ext> 		=> This will open Sublime text editor
+
+to move the file from the working directory to Git's staging area use command:
+	git add <filename.ext>
+
+	*in order to add ALL files (if several) use:
+	git add .
+
+to commit the file with message use:
+	git commit -m "your message"		=> commits the file with specified message atttached
+
+
+IV Repository and git folder
+-----------------------------
+ 
