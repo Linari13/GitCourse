@@ -80,11 +80,155 @@ to move the file from the working directory to Git's staging area use command:
 to commit the file with message use:
 	git commit -m "your message"		=> commits the file with specified message atttached
 
+to directly commit a modified file (without having to use the "add" command ) use:
+	git commit -a
+	
+	OR if you want as well to directly add the commit message
+
+				   **********************************
+			->->   * git commit -am "Commit message"*
+				   **********************************
+
 
 IV Commit detail with log and show
 -----------------------------------
 To see what the history of what has been done we can use these two commands:
-	Git log			=> will show us the lasts commits
+	Git log			=> will show us the all the commits part of thios repository
 
 	Git show 		=> will show us the lasts commit and what changed.
+		To exit from Git show press "q"
 
+V. Editing a file managed by git
+---------------------------------
+To edit an existing file just use known command:
+	subl <filename.ext>
+		This will open sublime text so we can make changes within the file
+
+To know which files Git is tracking use the command:
+	git ls-files
+
+To remove a file from the repository use command:
+	rm <filename.ext>
+
+VI. Backing Out : Recovering from mistakes
+-------------------------------------------
+to revert an unfortunate "add" command use:
+	git reset HEAD <filename.ext>
+
+to revert the last changes made into a file
+	git checkout -- <filename.ext>
+
+VII. Git commands Help
+-----------------------
+Type this command to see the git possible command lines:
+	git help log
+
+VIII. History and New commads with alias
+-----------------------------------------
+This is the kind of command to have a clear log about the history:
+	git log --oneline --graph --decorate --all
+
+	º creating a git alias
+	-----------------------
+	An alias is a new command which is a short representation of an existing longer command
+	e.g:
+		command is: git log --oneline --graph --decorate --all
+		alias "hist" will be created as:
+			git config --global alias.hist "log --oneline --graph --decorate --all"
+
+To check user's made entries use:
+	git config --global --list
+
+IX. Rename and delete file
+--------------------------
+Rename a file - use the 2 following commands:
+	git mv <filename.ext> <newfilename.ext> (delete filename.ext and create a copy named newfilename.ext )
+	git commit -m "renommer le fichier"
+
+delete a file
+	git rm <filename.ext>
+	git commit -m "supprimer le fichier"
+
+X. Rename and delete files outside of Git
+------------------------------------------
+We can rename and delete files directly on the Operative System
+
+To do so we use the commande mv and rm but without the "git" mention.
+Eg: mv <filename.ext> <newfilename.ext>
+	rm <filename2.ext>
+
+but then we have to infor Git about this changes:
+	git add -u 			=> this add the deletion of filename.ext to the commit
+	git add -A 			=> this add all kind of changes to the commit
+
+Then we have to submit commit
+
+XI. Ignoring files and folder
+------------------------------
+To ignore 1 or more files we have to create a file that list them.
+This file's named .gitignore
+
+	subl .gitignore 		=> will open a sublime text file called gitignore
+
+	Then we have to list the files we want to be ignored
+		- one by one
+		- using "*" as e.g.: "*.log"
+
+XII. Branching
+---------------
+git branch 							-> informs on which branch we are
+git branch -a 						-> informs on what branches we have
+git checkout -b <branchname>		-> create a new branch "branchname" and switch on to it
+
+git checkout <exisitingBranchName> 	-> switches to the existing mentioned branch
+
+git merge <branchName>				-> Merges "branchName" with our actual branch
+
+git branch -d <branchName> 			-> Deletes branch "branchName"
+
+XIII. Conflict Resolution
+--------------------------	
+
+cat <fileName>						-> shows where the conflict is
+
+º We can solve the conflict by using our merge tool (here p4merge) and calling it with:
+	git mergetool
+
+º Once the conflict resolve we have to commit our changes
+	git commit -m "message"
+
+º Nevertheless a <fileName.ext>.orig has been created (as a backup), and we probably want to ignore it
+	subl .gitignore
+
+	ºand we add *.orig to the ignored list
+
+º we do an express commit to update the ignore file
+
+XIV. Tags
+----------
+Sets a milestone of our repository in time
+
+git tag <tagName> 								=> creates the tag
+git tag --list									=> list the created tags
+git tag -d <tagName> 							=> deletes the specified tag
+git tag -a <tagName> -m "tag detail message"	=> creates a "tagName" tag with a associated message
+git show <tagName>								=> shows the details of the tag
+
+XV. Stashing
+-------------
+git stash 		
+			=> records the current state of the working directory and the index, and go back to a clean working directory. The command saves your local modifications away and reverts the working directory to match the HEAD commit.
+
+git stash pop 	
+			=> takes a stashed change, removes it from the “stash stack”, and applies it to your current working tree
+
+XVI. Reset and Reflog
+----------------------
+Reset:
+	git reset <commitID> --soft			=>  least destructive: changes where head is pointing
+											Preserve the git staging area and our working directory
+	git reset <commitID> --mixed		=>  Reset the stagging area
+	git reset <commitID> --hard 		=>  Most destructive: reset stagging and working directory
+
+
+git reflog 								=> list the references of all the commit we made
